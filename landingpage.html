@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Maxwell Juma - aspiring software developer building ideas into reality.">
+    <title>Maxwell Juma | Software Developer</title>
+    <style>
+        :root {
+            --ink: #152018;
+            --paper: #f4f1e8;
+            --lime: #c7f36b;
+            --green: #24452f;
+            --muted: #667169;
+            --line: rgba(21, 32, 24, 0.16);
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: Inter, Aptos, "Segoe UI", sans-serif;
+            line-height: 1.6;
+        }
+
+        a { color: inherit; }
+
+        .shell {
+            width: min(1180px, calc(100% - 64px));
+            margin: 0 auto;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            border-bottom: 1px solid transparent;
+            background: rgba(244, 241, 232, 0.92);
+            backdrop-filter: blur(12px);
+        }
+
+        nav {
+            display: flex;
+            height: 82px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            font-size: 1.05rem;
+            font-weight: 850;
+            letter-spacing: -0.04em;
+            text-decoration: none;
+        }
+
+        .brand span { color: #77a83e; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            position: relative;
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-links a::after {
+            position: absolute;
+            right: 0;
+            bottom: -7px;
+            left: 0;
+            height: 2px;
+            background: #77a83e;
+            content: "";
+            transform: scaleX(0);
+            transition: transform 180ms ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a:focus-visible::after { transform: scaleX(1); }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+            min-height: 690px;
+            align-items: center;
+            gap: 70px;
+            padding: 80px 0 90px;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 0 24px;
+            color: #5e7e3d;
+            font-size: 0.76rem;
+            font-weight: 850;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            width: 36px;
+            height: 2px;
+            background: #89b84e;
+            content: "";
+        }
+
+        h1 {
+            max-width: 760px;
+            margin: 0;
+            font-size: clamp(4rem, 8vw, 7.25rem);
+            font-weight: 850;
+            letter-spacing: -0.085em;
+            line-height: 0.88;
+        }
+
+        h1 span {
+            display: inline-block;
+            color: var(--green);
+        }
+
+        .intro {
+            max-width: 620px;
+            margin: 30px 0 0;
+            color: var(--muted);
+            font-size: 1.08rem;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 34px;
+        }
+
+        .button {
+            display: inline-flex;
+            min-height: 52px;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 20px;
+            border: 1px solid var(--ink);
+            border-radius: 999px;
+            font-size: 0.91rem;
+            font-weight: 800;
+            text-decoration: none;
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 0 rgba(21, 32, 24, 0.12);
+        }
+
+        .button-primary {
+            background: var(--lime);
+        }
+
+        .button-secondary { background: transparent; }
+
+        .socials {
+            display: flex;
+            gap: 22px;
+            margin-top: 28px;
+        }
+
+        .socials a {
+            border-bottom: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 0.84rem;
+            font-weight: 750;
+            text-decoration: none;
+        }
+
+        .socials a:hover { color: var(--ink); border-color: var(--ink); }
+
+        .code-card {
+            position: relative;
+            min-height: 405px;
+            overflow: hidden;
+            border: 1px solid rgba(21, 32, 24, 0.12);
+            border-radius: 18px;
+            background: var(--ink);
+            box-shadow: 28px 28px 0 var(--lime);
+            color: #edf4eb;
+        }
+
+        .code-card::after {
+            position: absolute;
+            right: -70px;
+            bottom: -70px;
+            width: 190px;
+            height: 190px;
+            border: 1px solid rgba(199, 243, 107, 0.18);
+            border-radius: 50%;
+            content: "";
+        }
+
+        .window-bar {
+            display: flex;
+            height: 58px;
+            align-items: center;
+            gap: 8px;
+            padding: 0 22px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #6e7d72;
+        }
+
+        .dot:first-child { background: var(--lime); }
+
+        pre {
+            margin: 0;
+            padding: 34px 30px;
+            font-family: "Cascadia Code", Consolas, monospace;
+            font-size: 0.92rem;
+            line-height: 1.9;
+        }
+
+        .purple { color: #c8b6ff; }
+        .green { color: var(--lime); }
+
+        section { scroll-margin-top: 100px; }
+
+        .section {
+            display: grid;
+            grid-template-columns: 0.72fr 1.28fr;
+            gap: 64px;
+            padding: 100px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .section-label {
+            margin: 8px 0 0;
+            color: #5e7e3d;
+            font-size: 0.76rem;
+            font-weight: 850;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: clamp(2.8rem, 5vw, 5.4rem);
+            letter-spacing: -0.075em;
+            line-height: 0.96;
+        }
+
+        h2 span { color: #77a83e; }
+
+        .about-copy {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 34px;
+            align-self: end;
+        }
+
+        .about-copy p { margin: 0; color: var(--muted); }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .skill {
+            min-height: 150px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+        }
+
+        .skill-number {
+            display: block;
+            margin-bottom: 38px;
+            color: #77a83e;
+            font-size: 0.78rem;
+            font-weight: 850;
+        }
+
+        .skill h3 {
+            margin: 0;
+            font-size: 1.08rem;
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .contact-row p {
+            max-width: 470px;
+            margin: 18px 0 0;
+            color: var(--muted);
+        }
+
+        footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 120px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 0.84rem;
+        }
+
+        footer .socials { margin: 0; }
+
+        :focus-visible {
+            outline: 3px solid #77a83e;
+            outline-offset: 4px;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+                gap: 54px;
+                padding-top: 64px;
+            }
+
+            .code-card {
+                max-width: 560px;
+                min-height: 360px;
+            }
+
+            .section { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 620px) {
+            .shell { width: min(100% - 36px, 560px); }
+            nav { height: 72px; }
+            .nav-links { gap: 16px; }
+            .nav-links a { font-size: 0.78rem; }
+            h1 { font-size: clamp(3.4rem, 17vw, 5rem); }
+            .hero { padding: 52px 0 72px; }
+            .actions { flex-direction: column; }
+            .button { width: 100%; }
+            .code-card { min-height: 330px; box-shadow: 14px 14px 0 var(--lime); }
+            pre { padding: 28px 20px; font-size: 0.78rem; }
+            .section { gap: 34px; padding: 72px 0; }
+            .about-copy, .skill-grid { grid-template-columns: 1fr; }
+            .contact-row, footer { align-items: flex-start; flex-direction: column; justify-content: center; }
+            footer { gap: 12px; padding: 24px 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { transition-duration: 0.01ms !important; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="shell" aria-label="Main navigation">
+            <a class="brand" href="#top">MAXWELL<span>.</span></a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="top" class="shell">
+        <section class="hero" aria-labelledby="hero-title">
+            <div>
+                <p class="eyebrow">Software developer in progress</p>
+                <h1 id="hero-title">Building ideas into <span>reality.</span></h1>
+                <p class="intro">I'm Maxwell, a technology enthusiast passionate about software development, creativity and solving real-world problems. Currently learning, experimenting and building my future.</p>
+                <div class="actions">
+                    <a class="button button-primary" href="https://github.com/slowl-pixel" target="_blank" rel="noreferrer">Explore my work <span aria-hidden="true">↗</span></a>
+                    <a class="button button-secondary" href="#contact">Contact me</a>
+                </div>
+                <div class="socials" aria-label="Social links">
+                    <a href="https://github.com/slowl-pixel" target="_blank" rel="noreferrer">GitHub ↗</a>
+                    <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+                </div>
+            </div>
+
+            <div class="code-card" aria-label="Developer profile code">
+                <div class="window-bar" aria-hidden="true">
+                    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+                <pre><span class="purple">const</span> developer = {
+  name: <span class="green">"Maxwell"</span>,
+  passion: <span class="green">"Technology"</span>,
+  learning: <span class="green">"Everyday"</span>,
+  goal: <span class="green">"Build solutions"</span>
+};
+
+<span class="purple">while</span> (alive) {
+  learn();
+  build();
+  improve();
+}</pre>
+            </div>
+        </section>
+
+        <section id="about" class="section" aria-labelledby="about-title">
+            <p class="section-label">01 — About me</p>
+            <div>
+                <h2 id="about-title">Curiosity drives <span>everything.</span></h2>
+                <div class="about-copy" style="margin-top: 38px">
+                    <p>I'm an aspiring software developer interested in technology, programming, creative design and innovation. I enjoy learning how things work and turning ideas into practical solutions.</p>
+                    <p>Currently expanding my knowledge in software development, Python, web technologies and 3D modelling with Blender. My long-term vision is to create impactful technology that solves meaningful problems.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section" aria-labelledby="skills-title">
+            <p class="section-label">02 — My skills</p>
+            <div>
+                <h2 id="skills-title">Technologies I'm <span>exploring.</span></h2>
+                <div class="skill-grid" style="margin-top: 38px">
+                    <article class="skill"><span class="skill-number">01</span><h3>Software development</h3></article>
+                    <article class="skill"><span class="skill-number">02</span><h3>Python</h3></article>
+                    <article class="skill"><span class="skill-number">03</span><h3>Web technologies</h3></article>
+                    <article class="skill"><span class="skill-number">04</span><h3>3D modelling — Blender</h3></article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section" aria-labelledby="contact-title">
+            <p class="section-label">03 — Contact</p>
+            <div class="contact-row">
+                <div>
+                    <h2 id="contact-title">Let's build <span>something.</span></h2>
+                    <p>Interested in technology, creative projects or meaningful solutions? Let's connect.</p>
+                </div>
+                <a class="button button-primary" href="https://github.com/slowl-pixel" target="_blank" rel="noreferrer">Visit GitHub <span aria-hidden="true">↗</span></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="shell">
+        <span>© 2026 Maxwell Juma</span>
+        <div class="socials">
+            <a href="https://github.com/slowl-pixel" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+    </footer>
+</body>
+</html>
